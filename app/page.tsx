@@ -1,100 +1,167 @@
+"use client";
+
+import { useState } from "react";
+import VariableSelection from "@/components/variableSelection";
+import { CodeDisplay } from "@/components/CodeDisplay";
+import { Selection } from "./types";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+
+const variableColors = {
+  X: "text-blue-600",
+  Y: "text-emerald-600",
+  Z: "text-purple-600",
+};
+
+const badgeColors = {
+  X: "bg-blue-600 hover:bg-blue-700",
+  Y: "bg-emerald-600 hover:bg-emerald-700",
+  Z: "bg-purple-600 hover:bg-purple-700",
+};
+
+const variableBorders = {
+  X: "border-blue-200 hover:border-blue-400",
+  Y: "border-emerald-200 hover:border-emerald-400",
+  Z: "border-purple-200 hover:border-purple-400",
+};
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [selections, setSelections] = useState<Selection[]>([
+    { variable: "X", imageId: null, value: null },
+    { variable: "Y", imageId: null, value: null },
+    { variable: "Z", imageId: null, value: null },
+  ]);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleSelect = (newSelection: Selection) => {
+    setSelections((prev) =>
+      prev.map((selection) =>
+        selection.variable === newSelection.variable ? newSelection : selection
+      )
+    );
+  };
+
+  const allSelected = selections.every((s) => s.value !== null);
+  const selectedCount = selections.filter((s) => s.value !== null).length;
+
+  return (
+    <div className="min-h-screen w-full bg-gradient-to-b from-gray-50 to-gray-100">
+      <div className="container mx-auto px-4 py-8">
+        {/* Header Section */}
+        <div className="max-w-5xl mx-auto space-y-6 mb-12">
+          <div className="text-center space-y-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+              Clouden's Calculator
+            </h1>
+            <p className="text-gray-600 text-sm md:text-base w-full mx-auto">
+              Please select a symbol for each variable below. These can be found
+              on the sticky notes located on the terminal.
+            </p>
+          </div>
+
+          {/* Example Image Card */}
+          <Card className="overflow-hidden bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+            <CardContent className="p-1">
+              {" "}
+              {/* Removed all padding */}
+              <div className="relative aspect-[16/9] w-full">
+                {" "}
+                {/* Adjusted aspect ratio for a more typical image size */}
+                <Image
+                  src="/puzzle_images/Puzzle_example.jpeg"
+                  alt="Example Image for puzzle"
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Selection Counter */}
+          <div className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 rounded-full px-6 py-2 w-fit mx-auto">
+            <span className="text-sm md:text-base font-medium text-gray-800">
+              {selectedCount}/3 Selections Made
+            </span>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+        {/* Selection Grid */}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
+            {selections.map((selection) => (
+              <div
+                key={selection.variable}
+                className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 rounded-xl p-4 md:p-6 space-y-4"
+              >
+                <div
+                  className={`text-xl md:text-2xl font-bold text-center ${
+                    variableColors[
+                      selection.variable as keyof typeof variableColors
+                    ]
+                  }`}
+                >
+                  Variable {selection.variable}
+                </div>
+                {/* Removed the extra wrapper div that was causing double border */}
+                <div className="flex flex-col justify-center items-center">
+                  <VariableSelection
+                    variable={selection.variable}
+                    selection={selection}
+                    onSelect={handleSelect}
+                    className={`${
+                      variableBorders[
+                        selection.variable as keyof typeof variableBorders
+                      ]
+                    }`}
+                  />
+                </div>
+                {selection.value != null && (
+                  <div className="flex justify-center items-center space-x-2 text-base md:text-lg">
+                    <span>Symbol's Value:</span>
+                    <Badge
+                      className={cn(
+                        badgeColors[
+                          selection.variable as keyof typeof badgeColors
+                        ],
+                        "text-white px-3 py-1"
+                      )}
+                    >
+                      {selection.value}
+                    </Badge>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Results */}
+        <div className="mb-8">
+          <CodeDisplay selections={selections} />
+        </div>
+      </div>
+      <footer className="w-full py-6 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 mt-auto">
+        <div className="container flex flex-col items-center justify-center gap-4 px-4 text-center md:gap-6">
+          <div className="text-sm text-gray-500 space-y-2">
+            <p>Calculator made by Clouden</p>
+            <p>
+              Example image from{" "}
+              <a
+                href="https://www.reddit.com/r/BlackOps6Zombies/comments/1gchx3g/stop_spending_5k_at_peck_for_the_laboratory_code/#lightbox"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline underline-offset-2"
+              >
+                Reddit post
+              </a>{" "}
+              (because I am lazy)
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
   );
