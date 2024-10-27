@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 
 const variableColors = {
   X: "text-blue-600",
@@ -43,7 +42,6 @@ export default function Home() {
     );
   };
 
-  const allSelected = selections.every((s) => s.value !== null);
   const selectedCount = selections.filter((s) => s.value !== null).length;
 
   return (
@@ -53,7 +51,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto space-y-6 mb-12">
           <div className="text-center space-y-4">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
-              Clouden's Calculator
+              Clouden&apos;s Calculator
             </h1>
             <p className="text-gray-600 text-sm md:text-base w-full mx-auto">
               Please select a symbol for each variable below. These can be found
@@ -121,7 +119,7 @@ export default function Home() {
                 </div>
                 {selection.value != null && (
                   <div className="flex justify-center items-center space-x-2 text-base md:text-lg">
-                    <span>Symbol's Value:</span>
+                    <span>Symbol&apos;s Value:</span>
                     <Badge
                       className={cn(
                         badgeColors[

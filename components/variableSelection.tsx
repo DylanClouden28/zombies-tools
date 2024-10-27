@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useMediaQuery } from "usehooks-ts";
 import { Button } from "@/components/ui/button";
