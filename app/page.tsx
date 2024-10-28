@@ -143,7 +143,7 @@ export default function Home() {
         </div>
       </div>
       <footer className="w-full py-6 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 mt-auto">
-        <div className="container flex flex-col items-center justify-center gap-4 px-4 text-center md:gap-6">
+        <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center gap-4 px-4 text-center md:gap-6">
           <div className="text-sm text-gray-500 space-y-2">
             <p>Calculator made by Clouden</p>
             <p>
