@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { CSPostHogProvider } from "./providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,17 +45,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="BX7a0tYmhgyeq0u0qc7FXvu-kGUH_e3JVkC0dkwl7vs"
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <CSPostHogProvider>
+        <head>
+          <meta
+            name="google-site-verification"
+            content="BX7a0tYmhgyeq0u0qc7FXvu-kGUH_e3JVkC0dkwl7vs"
+          />
+        </head>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </CSPostHogProvider>
     </html>
   );
 }
