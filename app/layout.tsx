@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Head from "next/head";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,7 +15,26 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Clouden's Calculator",
-  description: "To skip spending 5k",
+  description:
+    "Calculator made for Terminus Black Ops 6 Cod Zombies by Clouden to skip spending 5k on EE (easter egg steps)",
+  keywords: [
+    "Calculator",
+    "Terminus",
+    "Black Ops 6",
+    "COD Zombies",
+    "Easter Egg",
+    "Clouden",
+  ],
+  openGraph: {
+    title: "Clouden's Calculator",
+    description:
+      "Calculator made for Terminus Black Ops 6 Cod Zombies by Clouden to skip spending 5k on EE (easter egg steps)",
+    type: "website",
+  },
+  verification: {
+    google: "BX7a0tYmhgyeq0u0qc7FXvu-kGUH_e3JVkC0dkwl7vs",
+  },
+  metadataBase: new URL("https://zombies-tools.vercel.app/"),
 };
 
 export default function RootLayout({
@@ -26,12 +44,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <meta
           name="google-site-verification"
           content="BX7a0tYmhgyeq0u0qc7FXvu-kGUH_e3JVkC0dkwl7vs"
         />
-      </Head>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

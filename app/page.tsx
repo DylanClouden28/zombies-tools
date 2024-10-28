@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
+import TitleSection from "./titleSection";
 
 const variableColors = {
   X: "text-blue-600",
@@ -46,100 +47,100 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-gray-50 to-gray-100">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header Section */}
-        <div className="max-w-5xl mx-auto space-y-6 mb-12">
-          <div className="text-center space-y-4">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
-              Clouden&apos;s Calculator
-            </h1>
-            <p className="text-gray-600 text-sm md:text-base w-full mx-auto">
-              Please select a symbol for each variable below. These can be found
-              on the sticky notes located on the terminal.
-            </p>
-          </div>
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-blue-50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-purple-400/10 to-blue-400/10 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-transparent" />
+      </div>
 
-          {/* Example Image Card */}
-          <Card className="overflow-hidden bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-            <CardContent className="p-1">
-              {" "}
-              {/* Removed all padding */}
-              <div className="relative aspect-[16/9] w-full">
+      <div className="relative z-10">
+        <div className="container mx-auto px-4 py-8">
+          {/* Header Section */}
+          <div className="max-w-5xl mx-auto space-y-6 mb-12">
+            <TitleSection />
+
+            {/* Example Image Card */}
+            <Card className="overflow-hidden bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+              <CardContent className="p-1">
                 {" "}
-                {/* Adjusted aspect ratio for a more typical image size */}
-                <Image
-                  src="/puzzle_images/Puzzle_example.jpeg"
-                  alt="Example Image for puzzle"
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Selection Counter */}
-          <div className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 rounded-full px-6 py-2 w-fit mx-auto">
-            <span className="text-sm md:text-base font-medium text-gray-800">
-              {selectedCount}/3 Selections Made
-            </span>
-          </div>
-        </div>
-
-        {/* Selection Grid */}
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
-            {selections.map((selection) => (
-              <div
-                key={selection.variable}
-                className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 rounded-xl p-4 md:p-6 space-y-4"
-              >
-                <div
-                  className={`text-xl md:text-2xl font-bold text-center ${
-                    variableColors[
-                      selection.variable as keyof typeof variableColors
-                    ]
-                  }`}
-                >
-                  Variable {selection.variable}
-                </div>
-                {/* Removed the extra wrapper div that was causing double border */}
-                <div className="flex flex-col justify-center items-center">
-                  <VariableSelection
-                    variable={selection.variable}
-                    selection={selection}
-                    onSelect={handleSelect}
-                    className={`${
-                      variableBorders[
-                        selection.variable as keyof typeof variableBorders
-                      ]
-                    }`}
+                {/* Removed all padding */}
+                <div className="relative aspect-[16/9] w-full">
+                  {" "}
+                  {/* Adjusted aspect ratio for a more typical image size */}
+                  <Image
+                    src="/puzzle_images/Puzzle_example.jpeg"
+                    alt="Example Image for puzzle"
+                    fill
+                    className="object-contain"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                {selection.value != null && (
-                  <div className="flex justify-center items-center space-x-2 text-base md:text-lg">
-                    <span>Symbol&apos;s Value:</span>
-                    <Badge
-                      className={cn(
-                        badgeColors[
-                          selection.variable as keyof typeof badgeColors
-                        ],
-                        "text-white px-3 py-1"
-                      )}
-                    >
-                      {selection.value}
-                    </Badge>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+              </CardContent>
+            </Card>
 
-        {/* Results */}
-        <div className="mb-8">
-          <CodeDisplay selections={selections} />
+            {/* Selection Counter */}
+            <div className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 rounded-full px-6 py-2 w-fit mx-auto">
+              <span className="text-sm md:text-base font-medium text-gray-800">
+                {selectedCount}/3 Selections Made
+              </span>
+            </div>
+          </div>
+
+          {/* Selection Grid */}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
+              {selections.map((selection) => (
+                <div
+                  key={selection.variable}
+                  className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 rounded-xl p-4 md:p-6 space-y-4"
+                >
+                  <div
+                    className={`text-xl md:text-2xl font-bold text-center ${
+                      variableColors[
+                        selection.variable as keyof typeof variableColors
+                      ]
+                    }`}
+                  >
+                    Variable {selection.variable}
+                  </div>
+                  {/* Removed the extra wrapper div that was causing double border */}
+                  <div className="flex flex-col justify-center items-center">
+                    <VariableSelection
+                      variable={selection.variable}
+                      selection={selection}
+                      onSelect={handleSelect}
+                      className={`${
+                        variableBorders[
+                          selection.variable as keyof typeof variableBorders
+                        ]
+                      }`}
+                    />
+                  </div>
+                  {selection.value != null && (
+                    <div className="flex justify-center items-center space-x-2 text-base md:text-lg">
+                      <span>Symbol&apos;s Value:</span>
+                      <Badge
+                        className={cn(
+                          badgeColors[
+                            selection.variable as keyof typeof badgeColors
+                          ],
+                          "text-white px-3 py-1"
+                        )}
+                      >
+                        {selection.value}
+                      </Badge>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Results */}
+          <div className="mb-8">
+            <CodeDisplay selections={selections} />
+          </div>
         </div>
       </div>
       <footer className="w-full py-6 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 mt-auto">
