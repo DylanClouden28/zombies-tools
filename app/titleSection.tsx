@@ -30,8 +30,8 @@ export default function TitleSection() {
     }),
   };
 
-  const titleWords = ["Clouden&apos;s", "Calculator"];
-  const mainTitleDuration = "Clouden&apos;s Calculator".length * 0.07 + 0.6;
+  const titleWords = ["Clouden's", "Calculator"];
+  const mainTitleDuration = "Clouden's Calculator".length * 0.07 + 0.6;
   const subtitleWords =
     "Skip spending 5k points on Terminus for BEAM SMASHER".split(" ");
 
