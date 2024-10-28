@@ -113,6 +113,7 @@ export default function VariableSelection({
           <DrawerHeader className="text-left">
             <DrawerTitle>Select Image for Variable {variable}</DrawerTitle>
           </DrawerHeader>
+          <div className="w-full flex flex-col justify-center items-center"></div>
           {content}
           <DrawerClose asChild>
             <Button variant="outline" className="m-4">

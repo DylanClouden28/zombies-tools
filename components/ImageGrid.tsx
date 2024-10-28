@@ -16,12 +16,17 @@ export function ImageGrid({
   className,
 }: ImageGridProps) {
   return (
-    <div className={cn("grid grid-cols-2 md:grid-cols-3 gap-4", className)}>
+    <div
+      className={cn(
+        "grid grid-cols-2 md:grid-cols-3 gap-4 place-items-center",
+        className
+      )}
+    >
       {images.map((image) => (
         <div
           key={image.id}
           className={cn(
-            "relative aspect-square cursor-pointer rounded-lg overflow-hidden border-2",
+            "aspect-square cursor-pointer rounded-lg max-h-32 w-32 overflow-hidden border-2",
             selectedId === image.id ? "border-blue-500" : "border-transparent"
           )}
           onClick={() => onSelect(image)}
@@ -29,8 +34,9 @@ export function ImageGrid({
           <Image
             src={image.src}
             alt={image.label}
-            fill
-            className="object-cover"
+            width={128}
+            height={128}
+            className="w-full h-full object-cover"
           />
         </div>
       ))}
