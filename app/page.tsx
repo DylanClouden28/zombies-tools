@@ -59,6 +59,15 @@ export default function Home() {
           {/* Header Section */}
           <div className="max-w-5xl mx-auto space-y-6 mb-12">
             <TitleSection />
+            <p
+              aria-hidden="true"
+              className="text-transparent text-center"
+              style={{ fontSize: "0.1px", opacity: "0", pointerEvents: "none" }}
+            >
+              Terminus Calculator, Beam Smasher Calculator, Clouden’s Terminus
+              Tool for COD Zombies, Calculator for Terminus Easter Egg, Black
+              Ops 6 Terminus Tool, Black Ops Terminus Gameplay Calculator.
+            </p>
 
             {/* Example Image Card */}
             <Card className="overflow-hidden bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">

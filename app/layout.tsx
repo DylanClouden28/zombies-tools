@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Clouden's Calculator",
+  title: "Clouden's Terminus Beamsmasher Calculator, Call of Duty Black ops 6",
   description:
     "Calculator made for Terminus Black Ops 6 Cod Zombies by Clouden to skip spending 5k on EE (easter egg steps)",
   keywords: [
@@ -27,9 +27,10 @@ export const metadata: Metadata = {
     "Clouden",
   ],
   openGraph: {
-    title: "Clouden's Calculator",
+    title:
+      "Terminus Beamsmasher Calculator by Clouden, Call of Duty Black ops 6",
     description:
-      "Calculator made for Terminus Black Ops 6 Cod Zombies by Clouden to skip spending 5k on EE (easter egg steps)",
+      "Terminus Calculator made for Beam Smasher on Terminus Black Ops 6 Cod Zombies by Clouden to skip spending 5k on EE (easter egg steps)",
     type: "website",
   },
   verification: {
