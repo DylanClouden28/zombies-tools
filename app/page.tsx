@@ -6,8 +6,6 @@ import { CodeDisplay } from "@/components/CodeDisplay";
 import { Selection } from "./types";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
 import TitleSection from "./titleSection";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -44,8 +42,6 @@ export default function Home() {
     );
   };
 
-  const selectedCount = selections.filter((s) => s.value !== null).length;
-
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="fixed inset-0 pointer-events-none">
@@ -57,7 +53,7 @@ export default function Home() {
       <div className="relative z-10">
         <div className="container mx-auto px-4 py-8">
           {/* Header Section */}
-          <div className="max-w-5xl mx-auto space-y-6 mb-12">
+          <div className="max-w-5xl mx-auto space-y-3 mb-12">
             <TitleSection />
             <p
               aria-hidden="true"
@@ -69,37 +65,21 @@ export default function Home() {
               Ops 6 Terminus Tool, Black Ops Terminus Gameplay Calculator.
             </p>
 
-            {/* Example Image Card */}
-            <Card className="overflow-hidden bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-              <CardContent className="p-1">
-                {" "}
-                {/* Removed all padding */}
-                <div className="relative aspect-[16/9] w-full">
-                  {" "}
-                  {/* Adjusted aspect ratio for a more typical image size */}
-                  <Image
-                    src="/puzzle_images/Puzzle_example.jpeg"
-                    alt="Example Image for puzzle"
-                    fill
-                    className="object-contain"
-                    priority
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Selection Counter */}
-            <div className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 rounded-full px-6 py-2 w-fit mx-auto">
-              <span className="text-sm md:text-base font-medium text-gray-800">
-                {selectedCount}/3 Selections Made
-              </span>
+            <div className="flex flex-col justify-center items-center">
+              <div className="relative aspect-[16/9] w-full md:w-3/4 shadow-2xl">
+                <img
+                  src="/puzzle_images/puzzle_example.webp"
+                  alt="Example Image for puzzle"
+                  className="absolute w-full h-full object-cover"
+                  sizes="(max-width: 768px) 70vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
             </div>
           </div>
 
           {/* Selection Grid */}
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
+            <div className="flex flex-col gap-6 md:gap-8 mb-8">
               {selections.map((selection) => (
                 <div
                   key={selection.variable}

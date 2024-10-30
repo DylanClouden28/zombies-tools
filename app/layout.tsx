@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { CSPostHogProvider } from "./providers";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Clouden's Terminus Beamsmasher Calculator, Call of Duty Black ops 6",
@@ -54,11 +42,7 @@ export default function RootLayout({
           />
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         </head>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-        </body>
+        <body className={`antialiased`}>{children}</body>
       </CSPostHogProvider>
     </html>
   );
