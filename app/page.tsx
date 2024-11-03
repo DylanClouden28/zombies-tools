@@ -7,7 +7,6 @@ import { Selection } from "./types";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import TitleSection from "./titleSection";
-import { Analytics } from "@vercel/analytics/react";
 
 const variableColors = {
   X: "text-blue-600",
@@ -152,7 +151,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-      <Analytics />
     </div>
   );
 }
